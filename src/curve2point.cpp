@@ -35,13 +35,15 @@ void callback ( const nav_msgs::OdometryConstPtr &msg){
 		tws.angular.z = 0;
 		ROS_INFO("I did it");
 	}	
-	else if((normAng(theta-yaw) >=0.01 && normAng(theta-yaw)>0)||(-1*normAng(theta-yaw) >=0.01 && normAng(theta-yaw)<0)){
-		tws.linear.x = 0;
-		tws.angular.z = normAng(theta-yaw);
-	}
-	else{
-		tws.linear.x = dist;
-		tws.angular.z = normAng(theta-yaw);
+	else{	
+		if(dist>0.9){
+			tws.linear.x = 0.9;
+			tws.angular.z = normAng(theta-yaw);
+		}
+		else{
+			tws.linear.x = dist;
+			tws.angular.z = normAng(theta-yaw);
+		}	
 	}
 	
 	twistPub.publish(tws);
@@ -52,7 +54,7 @@ int main(int argc, char **argv){
 	x = 4.0;
 	y = 1.5;
 
-	ros::init(argc,argv,"l2p");
+	ros::init(argc,argv,"c2p");
 
 	ros::NodeHandle node;
 

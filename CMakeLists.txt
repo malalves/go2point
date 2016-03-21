@@ -194,3 +194,6 @@ target_link_libraries(qYaw ${catkin_LIBRARIES})
 
 add_executable(l2p src/line2point.cpp)
 target_link_libraries(l2p ${catkin_LIBRARIES})
+
+add_executable(c2p src/curve2point.cpp)
+target_link_libraries(c2p ${catkin_LIBRARIES})

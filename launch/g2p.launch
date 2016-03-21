@@ -1,0 +1,4 @@
+<launch>
+ <node name="control" pkg="kine_controler" type="control" output="screen"/>
+ <node name="g2p" pkg="go2point" type="l2p" output="screen"/>
+</launch>
